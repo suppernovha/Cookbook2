@@ -5,19 +5,19 @@ import HomeMenu from '../../components/HomeMenu'
 const HomeHeader = styled.h1`
     text-align: center;
     font-family: ${fonts.header};
-    font-size: clamp(20px, 12vw, 140px);
+    font-size: clamp(20px, 12vw, 110px);
     color: ${colors.fourth};
     background-color: ${colors.secondary};
     border-radius: 45px;
     margin: 0 auto;
+    margin-top: 80px;
     padding-bottom: 80px;
-    width: 80vw;
     line-height: 1.1
 `
 
 function Home() {
     return (
-        <div style={{transform: 'translateY(20%'}}>
+        <div>
             <HomeHeader>COOK BOOK</HomeHeader>
             <HomeMenu />
         </div>

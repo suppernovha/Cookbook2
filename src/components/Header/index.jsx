@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom'
 import { colors, fonts } from '../../utils/style/variables'
 import styled from 'styled-components'
 import Plus from '../../assets/plus.png'
+import SearchBar from '../../components/SearchBar'
+import Banner from '../../components/Banner'
 
 const StyledContainer = styled.div`
     display: flex;
@@ -29,6 +31,8 @@ const StyledMenuWrapper = styled.div`
     grid-gap: 30px;
     margin: 0;
     grid-gap: 15px;
+    z-index: 2;
+    background-color: white;
 `
 const StyledMenuItem = styled(Link)`
     display: flex;
@@ -63,6 +67,8 @@ function Header() {
                     <StyledIcon src={Plus} alt='' />
                 </StyledMenuItem>
             </StyledMenuWrapper>
+            <Banner />
+            <SearchBar />
         </StyledContainer>
     )
 }

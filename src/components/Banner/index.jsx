@@ -17,6 +17,7 @@ const MonthDataContainer = styled.div`
     font-size: 25px;
     white-space: nowrap;
     z-index: 1;
+    background-color: red;
 `
 
 function getFruitsAndVegetablesByMonth(month, data) {

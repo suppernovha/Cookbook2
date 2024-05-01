@@ -5,16 +5,15 @@ import { fonts } from '../../utils/style/variables'
 
 const StyledMenuWrapper = styled.div`
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(clamp(60px, 21vw, 210px), 1fr));    
-    grid-auto-rows: minmax(60px, auto);
-    grid-gap: 30px;
+    grid-template-columns: repeat(4, minmax(clamp(60px, 21vw, 210px), 1fr));    
+    grid-gap: clamp(10px, 3vw, 30px);
     margin: 0 auto;
-    width: 60vw;
+    width: 80vw;
 `
 const StyledMenuItem = styled.div`
-display: flex;
-justify-content: center;
-align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: black;
     aspect-ratio: 1/1;
     border-radius: 33px;
@@ -26,7 +25,7 @@ const StyledTitle = styled.h1`
     margin: 0 auto;
     font-family: ${fonts.header};
     color: white;
-    font-size: clamp(30px, 50vw, 55px);
+    font-size: clamp(10px, 5vw, 55px);
     width: 100%;
 `
 const StyledLink = styled(Link)`

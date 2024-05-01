@@ -17,6 +17,7 @@ const SearchBarContainer = styled.div`
     padding: 5px 15px;
     width: 10%;
     gap: 10px;
+    z-index: 3;
 `
 const SearchIcon = styled.img`
     width: 25px;

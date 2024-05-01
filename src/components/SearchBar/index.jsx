@@ -13,11 +13,14 @@ const SearchBarContainer = styled.div`
     justify-content: space-between;
     align-items: center;
     border: 3px solid ${colors.fourth};
+    background-color: white;
     border-radius: 30px;
     padding: 5px 15px;
     width: 10%;
     gap: 10px;
     z-index: 3;
+    position: absolute;
+    right: 30px;
 `
 const SearchIcon = styled.img`
     width: 25px;

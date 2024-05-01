@@ -4,7 +4,7 @@ import { useFetch } from "../../hooks";
 
 const scrollText = keyframes`
     0% {
-      transform: translateX(100%);
+      transform: translateX(30%);
     }
     100% {
       transform: translateX(-195%);
@@ -14,10 +14,9 @@ const MonthDataContainer = styled.div`
     animation: ${scrollText} 50s linear infinite;
     color: black;
     font-weight: 800;
-    font-size: 25px;
+    font-size: clamp(14px, 2vw, 20px);
     white-space: nowrap;
     z-index: 1;
-    background-color: red;
 `
 
 function getFruitsAndVegetablesByMonth(month, data) {

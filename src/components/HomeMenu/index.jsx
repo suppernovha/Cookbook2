@@ -5,7 +5,7 @@ import { fonts } from '../../utils/style/variables'
 
 const StyledMenuWrapper = styled.div`
     display: grid;
-    grid-template-columns: repeat(4, minmax(clamp(60px, 21vw, 210px), 1fr));    
+    grid-template-columns: repeat(4, minmax(clamp(60px, 21vw, 150px), 1fr));    
     grid-gap: clamp(10px, 3vw, 30px);
     margin: 0 auto;
     width: 80vw;

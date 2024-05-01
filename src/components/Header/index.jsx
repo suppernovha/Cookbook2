@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import Plus from '../../assets/plus.png'
 import SearchBar from '../../components/SearchBar'
 import Banner from '../../components/Banner'
+import burgerBar from '../../assets/burger-bar.png'
 
 const StyledContainer = styled.div`
     display: flex;
@@ -15,6 +16,8 @@ const StyledContainer = styled.div`
     background-color: white;
     padding: 0 15px;
     gap: 15px;
+    overflow: hidden;
+    position: relative;
 `
 const StyledTitle = styled.h2`
     color: ${colors.primary};
@@ -26,7 +29,7 @@ const StyledTitle = styled.h2`
 `
 const StyledMenuWrapper = styled.div`
     display: grid;
-    grid-template-columns: repeat(5, 35px);    
+    grid-template-columns: repeat(6, 35px);    
     grid-auto-rows: 35px;
     grid-gap: 30px;
     margin: 0;
@@ -59,6 +62,9 @@ function Header() {
                 <StyledTitle>COOK BOOK</StyledTitle>
             </Link>
             <StyledMenuWrapper>
+            <StyledMenuItem $greenBG>
+                    <StyledIcon src={burgerBar} alt='menu burger' style={{width: '50%'}}/>
+                </StyledMenuItem>
                 <StyledMenuItem to="/List/main">M</StyledMenuItem>
                 <StyledMenuItem to="/List/sweet">S</StyledMenuItem>
                 <StyledMenuItem to="/List/basic">B</StyledMenuItem>

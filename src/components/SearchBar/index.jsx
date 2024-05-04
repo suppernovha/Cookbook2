@@ -7,6 +7,7 @@ import styled from 'styled-components'
 import search from '../../assets/search.png'
 import { colors } from '../../utils/style/variables'
 import { RecipeMockedData } from '../../utils/Data'
+import { useFetch } from '../../hooks'
 
 const SearchBarContainer = styled.div`
     display: flex;
@@ -31,8 +32,8 @@ const Input = styled.input`
     color: grey;
     width: 100%;
 `
-function searchRecipeByIngredient(ingredient) {
-    const resultId = RecipeMockedData
+function searchRecipeByIngredient(ingredient, data) {
+    const resultId = data
         .map(recipe => Object.keys(recipe.ingredients).includes(ingredient) ? recipe.id : null)
         .filter(id => id !== null)
         console.log(resultId)
@@ -42,13 +43,14 @@ function searchRecipeByIngredient(ingredient) {
 function SearchBar() {
     const { inputValue, setInputValue } = useContext(SearchContext)
     const navigate = useNavigate()
+    const { isLoading, data } = useFetch('http://localhost:4200/recipes')
 
     function handleChange(e) {
         setInputValue(e.target.value)
     }
     function handleSubmit(e) {
         e.preventDefault()
-        const result = searchRecipeByIngredient(inputValue)
+        const result = searchRecipeByIngredient(inputValue, data)
         console.log('Résultat trouvé dans searchBar :', result)
         const path = Array.isArray(result) && result.length > 0 ? `/List/id/${result}` : `/SearchError`;
         navigate(path);

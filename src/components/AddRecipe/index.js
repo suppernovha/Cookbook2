@@ -11,7 +11,7 @@ const FormContainer = styled.div`
   width: 70vw;
   margin: 0 auto;
   border-radius: 30px;
-  padding: 30px 45px;
+  padding: 40px 45px;
   margin-top: 50px;
   padding-bottom: 100px;
   position: relative;
@@ -19,6 +19,7 @@ const FormContainer = styled.div`
 const FormTitle = styled.h1`
   font-size: clamp(20px, 4vw, 45px);
   margin-top: 0;
+  margin-bottom: 50px;
   color: ${colors.fourth};
 `;
 const Form = styled.form`
@@ -187,7 +188,7 @@ function AddRecipe() {
 
   return (
     <FormContainer>
-      <FormTitle>ADD RECIPE</FormTitle>
+      <FormTitle>&gt; ADD RECIPE</FormTitle>
       <Form>
         <Grid2>
           <LabelContainer>

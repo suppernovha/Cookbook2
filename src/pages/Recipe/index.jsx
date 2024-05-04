@@ -2,10 +2,11 @@ import { useParams } from "react-router-dom"
 import { useState } from "react"
 import styled from "styled-components"
 
-import { RecipeMockedData } from "../../utils/Data"
+import { useFetch } from "../../hooks"
 import { utensils } from "../../utils/Data"
 import { colors } from '../../utils/style/variables'
 import PlayIcon from '../../assets/play.png'
+import Header from "../../components/Header"
 
 const RecipeContainer = styled.div`
     display: grid;
@@ -101,45 +102,52 @@ function getUtensilIcon(utensilName) {
     } else return null
 }
 function Recipe() {
+    const { isLoading, data } = useFetch('http://localhost:4200/recipes')
     const { currentId } = useParams()
-    const recipe = RecipeMockedData.find(recipe => recipe.id === parseInt(currentId))
-    const duration = calculateDuration(recipe)
     const [currentRecipe, setCurrentRecipe] = useState('')
 
-    return (
-            <RecipeContainer>
-                <Title >
-                    <h1 style={{ margin: 0 }}>{ recipe.title.toUpperCase() }</h1>
-                </Title>
-                <DisplayContainer $info $people>{recipe.people}ps</DisplayContainer>
-                <DisplayContainer $info $time>{duration}mn</DisplayContainer>
-                <DisplayContainer $utensils>
-                    
-                    {recipe.utensils.map((utensil, index) => (
-                        <UtensilIcon key={index} src={getUtensilIcon(utensil)} alt={utensil} />
-                    ))}
-                </DisplayContainer>
-                <DisplayContainer $playBtn>
-                    <Icon src={PlayIcon}/>
-                </DisplayContainer>
-                <IngredientsContainer>
-                    <h2 style={{ marginTop: 0}}>INGREDIENTS</h2>
-                    <IngredientsList>
-                        { Object.entries(recipe.ingredients).map(([name, quantity]) => (
-                            <li key={name}>
-                                    <span style={{fontWeight: 800}}>{name}</span> : <span style={{fontWeight: 300}}>{quantity.amount} {quantity.unit}
-                                    </span>
-                            </li>))
-                        }
-                    </IngredientsList>
-                </IngredientsContainer>
-                <StepsContainer> 
-                    { recipe.steps.map(step => (
-                        <li >&nbsp;{step}</li>))
-                    } 
-                </StepsContainer>
-            </RecipeContainer>
-    )
+    if(!isLoading && data) {
+        const recipe = data.find(recipe => recipe.id === parseInt(currentId))
+        const duration = calculateDuration(recipe)
+
+        return (
+        <div>
+        <Header />
+        <RecipeContainer>
+            <Title >
+                <h1 style={{ margin: 0 }}>{ recipe.title.toUpperCase() }</h1>
+            </Title>
+            <DisplayContainer $info $people>{recipe.people}ps</DisplayContainer>
+            <DisplayContainer $info $time>{duration}mn</DisplayContainer>
+            <DisplayContainer $utensils>
+                
+                {recipe.utensils.map((utensil, index) => (
+                    <UtensilIcon key={index} src={getUtensilIcon(utensil)} alt={utensil} />
+                ))}
+            </DisplayContainer>
+            <DisplayContainer $playBtn>
+                <Icon src={PlayIcon}/>
+            </DisplayContainer>
+            <IngredientsContainer>
+                <h2 style={{ marginTop: 0}}>INGREDIENTS</h2>
+                <IngredientsList>
+                    { Object.entries(recipe.ingredients).map(([name, quantity]) => (
+                        <li key={name}>
+                                <span style={{fontWeight: 800}}>{name}</span> : <span style={{fontWeight: 300}}>{quantity.amount} {quantity.unit}
+                                </span>
+                        </li>))
+                    }
+                </IngredientsList>
+            </IngredientsContainer>
+            <StepsContainer> 
+                { recipe.steps.map(step => (
+                    <li>&nbsp;{step}</li>))
+                } 
+            </StepsContainer>
+        </RecipeContainer>
+        </div>
+    )}
+    return null
 }
 
 export default Recipe

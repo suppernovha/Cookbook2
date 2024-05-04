@@ -4,14 +4,14 @@ import { useFetch } from "../../hooks";
 
 const scrollText = keyframes`
     0% {
-      transform: translateX(30%);
+      transform: translateX(100%);
     }
     100% {
-      transform: translateX(-195%);
+      transform: translateX(-190%);
     }
 `
 const MonthDataContainer = styled.div`
-    animation: ${scrollText} 50s linear infinite;
+    animation: ${scrollText} 20s linear infinite;
     color: black;
     font-weight: 800;
     font-size: clamp(14px, 2vw, 20px);
@@ -28,7 +28,7 @@ function getFruitsAndVegetablesByMonth(month, data) {
 }
 
 function Banner() {
-    const { isLoading, data } = useFetch('http://localhost:4200')
+    const { isLoading, data } = useFetch('http://localhost:4200/banner')
 
     const date = new Date()
     const months = ["janvier", "fevrier", "mars", "avril", "mai", "juin", "Juillet", "aout", "septembre", "octobre", "novembre", "decembre"]

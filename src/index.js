@@ -7,7 +7,6 @@ import List from './pages/List';
 import SearchError from './pages/SearchError'
 import EditRecipe from './pages/EditRecipe';
 
-import Header from './components/Header';
 import Recipe from './pages/Recipe';
 
 import GlobalStyle from './utils/style/GlobalStyle';
@@ -23,7 +22,6 @@ root.render(
   <React.StrictMode>
     <Router>
       <SearchProvider>
-        <Header />
         <GlobalStyle />
         
         <Routes>

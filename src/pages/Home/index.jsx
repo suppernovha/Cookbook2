@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 import { colors, fonts } from '../../utils/style/variables'
 import HomeMenu from '../../components/HomeMenu'
+import { useParams } from 'react-router-dom'
+import Header from '../../components/Header'
 
 const HomeHeader = styled.h1`
     text-align: center;
@@ -18,6 +20,7 @@ const HomeHeader = styled.h1`
 function Home() {
     return (
         <div>
+            <Header></Header>
             <HomeHeader>COOK BOOK</HomeHeader>
             <HomeMenu />
         </div>

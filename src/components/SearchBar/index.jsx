@@ -16,11 +16,10 @@ const SearchBarContainer = styled.div`
     background-color: white;
     border-radius: 30px;
     padding: 5px 15px;
-    width: 10%;
+    margin-left: 10px;
+    width: 40%;
     gap: 10px;
     z-index: 3;
-    position: absolute;
-    right: 30px;
 `
 const SearchIcon = styled.img`
     width: 25px;

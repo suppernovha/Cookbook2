@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { fonts } from '../../utils/style/variables'
 
-
 const StyledMenuWrapper = styled.div`
     display: grid;
     grid-template-columns: repeat(4, minmax(clamp(60px, 21vw, 150px), 1fr));    
@@ -35,22 +34,22 @@ const StyledLink = styled(Link)`
 function HomeMenu() {
     return (
         <StyledMenuWrapper>
-            <StyledLink to="/List/main">
+            <StyledLink to="/List/type/main">
                 <StyledMenuItem>
                     <StyledTitle>MA<br></br>IN .</StyledTitle>
                 </StyledMenuItem>
             </StyledLink>
-            <StyledLink to="/List/sweet">
+            <StyledLink to="/List/type/sweet">
                 <StyledMenuItem>
                     <StyledTitle>SWE<br></br>ETS</StyledTitle>
                 </StyledMenuItem>
             </StyledLink>
-            <StyledLink to="/List/basic">
+            <StyledLink to="/List/type/basic">
                 <StyledMenuItem>
                     <StyledTitle>BAS<br></br>ICS</StyledTitle>
                 </StyledMenuItem>
             </StyledLink>
-            <StyledLink to="/List/drink">
+            <StyledLink to="/List/type/drink">
                 <StyledMenuItem>
                     <StyledTitle>DRI<br></br>NKS</StyledTitle>
                 </StyledMenuItem>

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import AddForm from '../../components/AddForm'
+import AddRecipe from '../../components/AddRecipe'
 
 const StyledContainer = styled.div`
     text-align: left;
@@ -10,7 +10,7 @@ function EditRecipe() {
     return (
     <div>
         <StyledContainer>
-            <AddForm />
+            <AddRecipe />
         </StyledContainer>
         </div>
         )

@@ -10,7 +10,7 @@ import { RecipeMockedData } from '../../utils/Data'
 
 const SearchBarContainer = styled.div`
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     border: 3px solid ${colors.fourth};
     background-color: white;
@@ -26,10 +26,10 @@ const SearchIcon = styled.img`
 `
 const Input = styled.input`
     border: none;
-    width: 100%;
     outline: none;
     font-size: 20px;
     color: grey;
+    width: 100%;
 `
 function searchRecipeByIngredient(ingredient) {
     const resultId = RecipeMockedData
@@ -57,7 +57,7 @@ function SearchBar() {
     return (
         <SearchBarContainer>
             <SearchIcon src={search} alt={'search icon'} />
-            <form onSubmit={handleSubmit}>
+            <form style ={{width: '100%'}} onSubmit={handleSubmit}>
             <Input onChange={handleChange}></Input>
             </form>
         </SearchBarContainer>

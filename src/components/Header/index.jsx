@@ -75,7 +75,7 @@ function Header() {
                 <StyledMenuItem>
                     <StyledIcon src={burgerBar} alt='menu burger' style={{width: '50%'}}/>
                 </StyledMenuItem>
-                <StyledMenuItem $greenBG >
+                <StyledMenuItem to='/EditRecipe' $greenBG >
                     <StyledIcon src={Plus} alt='' />
                 </StyledMenuItem>
             </StyledMenuWrapper>
@@ -96,7 +96,7 @@ function Header() {
                     <StyledMenuItem to="/List/type/sweet">S</StyledMenuItem>
                     <StyledMenuItem to="/List/type/basic">B</StyledMenuItem>
                     <StyledMenuItem to="/List/type/drink">D</StyledMenuItem>
-                    <StyledMenuItem $greenBG >
+                    <StyledMenuItem to="/EditRecipe" $greenBG >
                         <StyledIcon src={Plus} alt='' />
                     </StyledMenuItem>
                 </StyledMenuWrapper>

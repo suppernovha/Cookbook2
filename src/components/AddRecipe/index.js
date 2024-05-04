@@ -158,7 +158,7 @@ function handleStep(e) {
   e.preventDefault();
 }
 
-function AddForm() {
+function AddRecipe() {
   const [ingredients, setIngredients] = useState([]);
 
   function handleIngredient(e) {
@@ -324,4 +324,4 @@ function AddForm() {
   );
 }
 
-export default AddForm;
+export default AddRecipe;

@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import search from '../../assets/search.png'
 import { colors } from '../../utils/style/variables'
-import { RecipeMockedData } from '../../utils/Data'
 import { useFetch } from '../../hooks'
 
 const SearchBarContainer = styled.div`
@@ -36,7 +35,6 @@ function searchRecipeByIngredient(ingredient, data) {
     const resultId = data
         .map(recipe => Object.keys(recipe.ingredients).includes(ingredient) ? recipe.id : null)
         .filter(id => id !== null)
-        console.log(resultId)
     return resultId
 }
 

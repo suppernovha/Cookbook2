@@ -1,5 +1,7 @@
 const express = require('express')
+
 const mongoose = require('mongoose')
+const Recipe = require('./models/Recipe')
 
 mongoose.connect('mongodb+srv://anthonyjacq:OEkN0EJrbkFgiVyn@clustercookbook.7ppzks6.mongodb.net/?retryWrites=true&w=majority&appName=ClusterCookbook',
     { useNewUrlParser: true,
@@ -167,7 +169,6 @@ app.get('/recipes', (req, res, next) => {
         {
             title: "soupe à l'oignon",
             id: 2,
-            picture: "onion-soup.jpeg",
             type: "main",
             ingredients: {
                 "oignons": { amount: 4, unit: null },
@@ -198,6 +199,15 @@ app.get('/recipes', (req, res, next) => {
         }
     ]
     res.status(200).json(Recipes)
+})
+
+app.post('/recipes', (req, res, next) => {
+    const recipe = new Recipe({
+        ...req.body
+    })
+    recipe.save()
+        .then(() => res.status(201).json({ message: 'Recette ajoutée !'}))
+        .catch(error => res.status(400).json({ error }))
 })
 
 app.use((req, res) => {

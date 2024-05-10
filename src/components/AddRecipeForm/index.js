@@ -1,7 +1,10 @@
 import styled from 'styled-components';
+import Header from '../Header';
 import { utensils } from '../../utils/Data';
 import { colors } from '../../utils/style/variables';
+
 import { useState } from 'react';
+import { useFetch } from '../../hooks';
 
 const Grid2 = styled.div`
   grid-column: span 1;
@@ -128,16 +131,14 @@ const AddButton = styled.button`
 const StepsContainer = styled.div`
   margin: 20px;
 `;
-const StepsDiv = styled.div`
+const StepsUl = styled.ul`
   border: 1px solid white;
   height: 100px;
   overflow: scroll;
 `;
-const StepsList = styled.div`
-  border: 1px solid white;
-  height: 100px;
-  overflow: scroll;
-`;
+const StepsLi = styled.li`
+  list-style-type: number;
+`
 const SubmitButton = styled.button`
   background-color: ${colors.fourth};
   color: white;
@@ -155,12 +156,9 @@ const SubmitButton = styled.button`
   }
 `;
 
-function handleStep(e) {
-  e.preventDefault();
-}
-
-function AddRecipe() {
+function AddRecipeForm() {
   const [ingredients, setIngredients] = useState([]);
+  const [steps, setSteps] = useState([])
 
   function handleIngredient(e) {
     e.preventDefault();
@@ -185,11 +183,57 @@ function AddRecipe() {
 
     return ingredients;
   }
+  function handleSteps(e) {
+    e.preventDefault()
+    let stepsInputValue = document.getElementById('steps').value
+    setSteps([...steps, stepsInputValue])
+    document.getElementById('steps').value = ''
+
+    return steps
+  }
+  function getCheckedUtensils() {
+    const checkBoxes = document.querySelectorAll('input[type="checkbox"]')
+    const checkedUtensils = []
+
+    checkBoxes.forEach(checkbox => {
+      if(checkbox.checked) {
+        checkedUtensils.push(checkbox.name)
+      }
+    })
+    return checkedUtensils
+  }
+
+  const { data } = useFetch('http://localhost:4200/recipes')
+
+  function handleFormSubmit(e) {
+    e.preventDefault()
+    data.push('RECIPE ADDED')
+    console.log(data)
+
+    const titleValue = document.getElementById('title').value
+    const typeValue = document.getElementById('type').value
+    const peopleValue = document.getElementById('people').value
+    const preparationValue = document.getElementById('preparation').value
+    const cookingDurationValue = document.getElementById('cooking_duration').value
+    const utensilsValue = getCheckedUtensils()
+
+    console.log(`Title : ${titleValue}`)
+    console.log(`Type : ${typeValue}`)
+    console.log(`Nb people : ${peopleValue}`)
+    console.log(`Preparation duration : ${preparationValue}`)
+    console.log(`Cooking duration : ${cookingDurationValue}`)
+    console.log(`Utensils : ${utensilsValue}`)
+    console.log(`Ingredients : ${ingredients}`)
+    console.log(`Steps : ${steps}`)
+
+  }
 
   return (
+    <div>
+    <Header />
     <FormContainer>
       <FormTitle>&gt; ADD RECIPE</FormTitle>
-      <Form>
+      <Form onSubmit={handleFormSubmit}>
         <Grid2>
           <LabelContainer>
             <Label htmlFor="title">NOM</Label>
@@ -199,7 +243,7 @@ function AddRecipe() {
         <LabelContainer>
           <Label htmlFor="type">TYPE</Label>
           <FormSelect name="type" id="type">
-            <FormOption value="main">...</FormOption>
+            <FormOption value="null">...</FormOption>
             <option value="main">Main</option>
             <option value="sweet">Sweet</option>
             <option value="basic">Basic</option>
@@ -311,10 +355,15 @@ function AddRecipe() {
         <Grid2>
           <StepsContainer>
             <LabelContainer>
-              <FormInput style={{ width: '95%' }} type="text"></FormInput>
-              <AddButton onClick={handleStep}>+</AddButton>
+              <FormInput style={{ width: '95%' }} type="text" id="steps"></FormInput>
+              <AddButton onClick={handleSteps}>+</AddButton>
             </LabelContainer>
-            <StepsDiv></StepsDiv>
+            <StepsUl>
+              {steps.map((step) => (
+                <StepsLi key={step}>{step}</StepsLi>
+              ))}
+
+            </StepsUl>
           </StepsContainer>
         </Grid2>
         <Grid2>
@@ -322,7 +371,8 @@ function AddRecipe() {
         </Grid2>
       </Form>
     </FormContainer>
+    </div>
   );
 }
 
-export default AddRecipe;
+export default AddRecipeForm;
